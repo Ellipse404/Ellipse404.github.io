@@ -1,43 +1,50 @@
-import React from 'react';
-import GoogleLogin from 'react-google-login';
-import axios from 'axios';
+import React from "react";
+import GoogleLogin from "react-google-login";
+import axios from "axios";
 
-const Google = ({ informParent = f => f }) => {
-    const responseGoogle = response => {
-        console.log(response.tokenId);
-        axios({
-            method: 'POST',
-            url: `${process.env.REACT_APP_API}/google-login`,
-            data: { idToken: response.tokenId }
-        })
-            .then(response => {
-                console.log('GOOGLE SIGNIN SUCCESS', response);
-                // inform parent component
-                informParent(response);
-            })
-            .catch(error => {
-                console.log('GOOGLE SIGNIN ERROR', error.response);
-            });
-    };
-    return (
-        <div className="pb-3">
-            <GoogleLogin
-                clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                render={renderProps => (
-                    <button
-                        onClick={renderProps.onClick}
-                        disabled={renderProps.disabled}
-                        className="gbtn btn-danger btn-lg btn-block"
-                    >
-                        <i className="fab fa-google pr-2"></i> Login with Google
-                    </button>
-                )}
-                cookiePolicy={'single_host_origin'}
-            />
-        </div>
+const Google = () => {
+//   const [gvalues, setGvalues] = useState([
+//     {
+//       username: "",
+//       email: "",
+//     },
+//   ]);
+  const responseGoogle = (response) => {
+    console.log(
+    "firstname :: ", response.profileObj.givenName,
+    "lastname :: ", response.profileObj.familyName, 
+    "Email Id :: ", response.profileObj.email, 
+    "Google Id :: ", response.profileObj.googleId,
     );
+
+    axios({
+      method: "POST",
+      url: process.env.REACT_APP_API_URL,
+      data: { response },
+    })
+      .then((response) => {
+        console.log("GOOGLE SIGNIN SUCCESS", response);
+        console.log(
+          "GOOGLE SIGNIN SUCCESS response.tokenId -->>",
+          response.tokenId
+        );
+
+      })
+      .catch((error) => {
+        console.log("GOOGLE SIGNIN ERROR", error);
+      });
+  };
+  return (
+    <div className="pb-3">
+      <GoogleLogin
+        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        buttonText="Login"
+        cookiePolicy={"single_host_origin"}
+      />
+    </div>
+  );
 };
 
 export default Google;

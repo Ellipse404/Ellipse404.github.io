@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Button, FormControl } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
@@ -15,7 +15,7 @@ import {
 } from "../../schema/validation_schema";
 import TextBoxInputField from "../../components/CustomTextField";
 import Google from "./Google";
-import { authenticate, isAuth } from '../../utils/helper'
+import { authenticate, isAuth } from "../../utils/helper";
 
 const useStyles = makeStyles((theme) => ({
   parentDiv: {
@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     height: "50%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "whitesmoke !important",
   },
 
   centered_div: {
@@ -61,12 +60,37 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUpComponent = () => {
   const navigate = useNavigate();
+  // disabled right click
+  document.addEventListener("contextmenu", (event) => event.preventDefault());
+  document.onkeydown = function (e) {
+    // disable F12 key
+    // if (e.keyCode == 123) {
+    //   return false;
+    // }
 
-  const informParent = response => {
-    authenticate(response, () => {
-      navigate('/login');
-    });
-};
+    // disable I key
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+      return false;
+    }
+
+    // disable J key
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+      return false;
+    }
+
+    // disable U key
+    if (e.ctrlKey && e.keyCode == 85) {
+      return false;
+    }
+  };
+
+
+  // const informParent = (response) => {
+  //   // authenticate(response, () => {
+  //     navigate("/");
+    
+  //   // });
+  // };
   const classes = useStyles();
   const { control, handleSubmit, formState } = useForm({
     resolver: yupResolver(
@@ -221,16 +245,13 @@ const SignUpComponent = () => {
               pauseOnHover
             />
           </form>
-         
         </Box>
-        
       </Box>
-      <Box sx={{position: 'absolute', top:40, right:40}}>
-          <div className="glogin">
-            <Google informParent={informParent} />
-          </div>
-          </Box>
-      
+      <Box sx={{ position: "absolute", top: 40, right: 40 }}>
+        <div className="glogin">
+          <Google  />
+        </div>
+      </Box>
     </React.Fragment>
   );
 };

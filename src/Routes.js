@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import App from "./App";
 import LoadingScreen from "./components/LoadingScreen";
+// import GoogleApiWrapper from "./components/GoogleMap"
 
 const Loadable = (Component) => (props) =>
   (
@@ -13,12 +14,14 @@ const Loadable = (Component) => (props) =>
   const LandingComponent = Loadable(lazy(() => import('./containers/LandingPage/index')))
   const SignInComponent = Loadable(lazy(() => import('./containers/SignIn')))
   const SignUpComponent = Loadable(lazy(() => import('./containers/SignUp')))
+  const MapLocation = Loadable(lazy(() => import('./components/GoogleMap')))
 
   
 const Routes = [
   { path: "*", element: <LandingComponent /> },
   { path: "/signup", element: <SignUpComponent />},
-  { path: "/login", element: <SignInComponent />}
+  { path: "/login", element: <SignInComponent />},
+  {path: "/location", element: <MapLocation />},
 ];
 
 export default Routes;

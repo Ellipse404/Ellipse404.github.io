@@ -1,9 +1,12 @@
 import React from 'react'
 
 const LandingComponent = () => {
+  const chkStr = "Something"
+  const encodedStr = window.btoa(chkStr)
   return (
     <React.Fragment>
-      <p>Hell O</p>
+      <p>{encodedStr}</p>
+      
     </React.Fragment>
   )
 }
