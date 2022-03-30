@@ -119,7 +119,6 @@ const SignUpComponent = () => {
     mode: "all",
   });
   const url_api = process.env.REACT_APP_API_URL;
-
   const onSubmit = async (data) => {
     try {
       await axios({
