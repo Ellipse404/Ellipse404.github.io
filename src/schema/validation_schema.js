@@ -8,6 +8,14 @@ export const emailValidation = yup
   .email(errors.invalidEmail)
   .required(errors.required);
 
+export const contactNoValidation = yup
+  .string()
+  .matches(
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+    errors.phone
+  )
+  .required(errors.required);
+
 export const passwordValidation = yup.string().required(errors.required);
 // .matches(
 //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
