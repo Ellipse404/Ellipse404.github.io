@@ -10,8 +10,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import {
+  userNameValidation,
   emailValidation,
   passwordValidation,
+  confirmPasswordValidation,
 } from "../../schema/validation_schema";
 import TextBoxInputField from "../../components/CustomTextField";
 import Google from "./Google";
@@ -42,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
   stackClass: {
     width: "600px !important",
-    height: "400px !important",
+    height: "500px !important",
     display: "flex",
     flexWrap: "wrap",
     flexDirection: "column",
@@ -84,23 +86,21 @@ const SignUpComponent = () => {
     }
   };
 
-
-  // const informParent = (response) => {
-  //   // authenticate(response, () => {
-  //     navigate("/");
-    
-  //   // });
-  // };
   const classes = useStyles();
-  const { control, handleSubmit, formState } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(
       yup.object().shape({
-        username: yup.string().required("Username Required"),
+        username: userNameValidation,
         email: emailValidation,
         password: passwordValidation,
-        confirmpassword: yup
-          .string()
-          .oneOf([yup.ref("password"), null], "Passwords must match"),
+        confirmpassword: confirmPasswordValidation,
+        // confirmpassword: yup
+        //   .string()
+        //   .oneOf([yup.ref("password"), null], "Passwords must match"),
       })
     ),
     mode: "all",
@@ -147,10 +147,7 @@ const SignUpComponent = () => {
     <React.Fragment>
       <Box className={classes.parentDiv}>
         <Box className={classes.childDiv}>
-          {/* <div className="glogin">
-            <Google informParent={informParent} />
-          </div> */}
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form>
             <FormControl>
               <Box className={classes.stackClass}>
                 <Box>
@@ -162,10 +159,12 @@ const SignUpComponent = () => {
                         className={classes.txtBox}
                         {...field}
                         id="outlined-basic"
+                        name="username"
                         label="Username"
                         variant="outlined"
                         placeholder="Username"
-                        // helperText={formState.}
+                        error={errors.username ? true : false}
+                        helperText={errors.username?.message}
                       />
                     )}
                   />
@@ -179,15 +178,12 @@ const SignUpComponent = () => {
                         className={classes.txtBox}
                         {...field}
                         id="outlined-basic"
+                        name="email"
                         label="Email"
                         variant="outlined"
                         placeholder="Email"
-                        // error={Boolean(formState.errors.email_id)}
-                        // helperText={
-                        //   formState.errors.email_id
-                        //     ? formState.errors.email_id?.message
-                        //     : " "
-                        // }
+                        error={errors.email ? true : false}
+                        helperText={errors.email?.message}
                       />
                     )}
                   />
@@ -201,10 +197,13 @@ const SignUpComponent = () => {
                         className={classes.txtBox}
                         {...field}
                         id="outlined-basic"
+                        name="password"
                         label="Password"
                         variant="outlined"
                         type="password"
                         placeholder="Password"
+                        error={errors.password ? true : false}
+                        helperText={errors.password?.message}
                       />
                     )}
                   />
@@ -218,16 +217,24 @@ const SignUpComponent = () => {
                         className={classes.txtBox}
                         {...field}
                         id="outlined-basic"
+                        name="confirmpassword"
                         label="Confirm Password"
                         variant="outlined"
                         type="password"
                         placeholder="Confirm Password"
+                        error={errors.confirmpassword ? true : false}
+                        helperText={errors.confirmpassword?.message}
                       />
                     )}
                   />
                 </Box>
                 <Box className={classes.centered_div}>
-                  <Button variant="contained" color="success" type="submit">
+                  <Button
+                    variant="contained"
+                    color="success"
+                    type="submit"
+                    onClick={handleSubmit(onSubmit)}
+                  >
                     Submit
                   </Button>
                 </Box>
@@ -249,7 +256,7 @@ const SignUpComponent = () => {
       </Box>
       <Box sx={{ position: "absolute", top: 40, right: 40 }}>
         <div className="glogin">
-          <Google  />
+          <Google />
         </div>
       </Box>
     </React.Fragment>

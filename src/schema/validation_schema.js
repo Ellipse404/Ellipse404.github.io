@@ -1,14 +1,20 @@
 import * as yup from "yup";
+import errors from "../constants/error";
+
+export const userNameValidation = yup.string().required(errors.required);
 
 export const emailValidation = yup
-  .string()
-  .email("incorrect email")
-  .required("required email");
+  .string(errors.email)
+  .email(errors.invalidEmail)
+  .required(errors.required);
 
-export const passwordValidation = yup
+export const passwordValidation = yup.string().required(errors.required);
+// .matches(
+//   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+//   errors.password
+// );
+
+export const confirmPasswordValidation = yup
   .string()
-  .required("required password")
-  // .matches(
-  //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-  //   "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-  // );
+  .required(errors.required)
+  .oneOf([yup.ref("password"), null], errors.confirmpassword);
