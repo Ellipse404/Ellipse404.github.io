@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Box, Button, FormControl } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import PhoneInput from "react-phone-input-2";
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
+import { startsWith } from "lodash";
+import "react-phone-input-2/lib/style.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ToastContainer, toast } from "react-toastify";
@@ -12,6 +15,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import {
   userNameValidation,
   emailValidation,
+  contactNoValidation,
   passwordValidation,
   confirmPasswordValidation,
 } from "../../schema/validation_schema";
@@ -58,6 +62,16 @@ const useStyles = makeStyles((theme) => ({
   controlledClass: {
     padding: "6px",
   },
+
+  helperText: {
+    color: "#d32f2f !important",
+    backgroundColor: "transparent !important",
+    fontWeight: "400",
+    fontSize: "0.75rem",
+    lineHeight: "1.66",
+    letterSpacing: "0.03333em",
+    marginLeft: "14px",
+  },
 }));
 
 const SignUpComponent = () => {
@@ -91,22 +105,20 @@ const SignUpComponent = () => {
     control,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({
     resolver: yupResolver(
       yup.object().shape({
         username: userNameValidation,
         email: emailValidation,
+        contact_no: contactNoValidation,
         password: passwordValidation,
         confirmpassword: confirmPasswordValidation,
-        // confirmpassword: yup
-        //   .string()
-        //   .oneOf([yup.ref("password"), null], "Passwords must match"),
       })
     ),
     mode: "all",
   });
   const url_api = process.env.REACT_APP_API_URL;
-
   const onSubmit = async (data) => {
     try {
       await axios({
@@ -225,6 +237,55 @@ const SignUpComponent = () => {
                         error={errors.confirmpassword ? true : false}
                         helperText={errors.confirmpassword?.message}
                       />
+                    )}
+                  />
+                </Box>
+                <Box>
+                  <Controller
+                    name="contact_no"
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <PhoneInput
+                          {...field}
+                          enableSearch
+                          disableCountryGuess
+                          disableCountryCode
+                          country={"in"}
+                          onChange={(
+                            value,
+                            { dialCode },
+                            e,
+                            formattedValue
+                          ) => {
+                            if (dialCode) {
+                              setValue("dial_code", dialCode);
+                              if (startsWith(value, dialCode)) {
+                                field.onChange(value.replace(dialCode, ""));
+                              } else {
+                                field.onChange(value);
+                              }
+                            } else {
+                              setValue("dial_code", "91");
+                              field.onChange(value);
+                            }
+                          }}
+                        />
+
+                        {errors.contact_no ? (
+                          <span className={classes.helperText}>
+                            {errors.contact_no?.message}
+                          </span>
+                        ) : errors.dial_code ? (
+                          <span className={classes.helperText}>
+                            {errors.dial_code?.message}
+                          </span>
+                        ) : (
+                          <span>
+                            <br />
+                          </span>
+                        )}
+                      </>
                     )}
                   />
                 </Box>
