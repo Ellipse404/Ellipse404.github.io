@@ -1,6 +1,5 @@
 var crypto = require("crypto-js");
 
-
 // export const encryptionAlgorithm = (value) => {
 //   value = value + strToBin("x4");
 //   for (let x = 0; x < (3+3-2+2.4-3+0.6); x++) {
@@ -44,7 +43,6 @@ var crypto = require("crypto-js");
 //   var textCipher = temp.toString(crypto.enc.Utf8)
 //   return textCipher
 // }
-
 
 var _0xd72c = [
   "\x78\x34",

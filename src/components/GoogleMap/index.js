@@ -24,7 +24,6 @@ const MapLocation = (props) => {
 
   function getLocation() {
     if (navigator.geolocation) {
-      // timeout at 60000 milliseconds (60 seconds)
       var options = { timeout: 60000 };
       navigator.geolocation.getCurrentPosition(
         showLocation,
@@ -38,7 +37,7 @@ const MapLocation = (props) => {
       alert("Sorry, browser does not support geolocation!");
     }
   }
-
+  const myPos = { latitude, longitude };
   return (
     <React.Fragment>
       <Box
@@ -61,7 +60,6 @@ const MapLocation = (props) => {
       <Map
         google={props.google}
         zoom={3}
-        center
         // gestureHandling="none"
         // zoomControl={false}
         initialCenter={{
@@ -69,7 +67,7 @@ const MapLocation = (props) => {
           lng: longitude,
         }}
       >
-        <Marker position={{ lat: latitude, lng: longitude }} />
+        <Marker center={myPos} position={{ lat: latitude, lng: longitude }} />
       </Map>
       {console.log("props.google ->>", props.google)}
     </React.Fragment>
