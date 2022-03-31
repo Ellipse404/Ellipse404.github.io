@@ -9,8 +9,9 @@ const MapLocation = (props) => {
   function showLocation(position) {
     setLatitude(position.coords.latitude);
     setLongitude(position.coords.longitude);
-    window.google.maps.Map(document.getElementsByClassName("google-map")).panTo(latitude, longitude)
-
+    window.google.maps
+      .Map(document.getElementsByClassName("google-map"))
+      .panTo(latitude, longitude);
   }
 
   function errorHandler(err) {
@@ -30,7 +31,9 @@ const MapLocation = (props) => {
         errorHandler,
         options
       );
-      window.google.maps.Map(document.getElementsByClassName("google-map")).panTo(latitude, longitude)
+      window.google.maps
+        .Map(document.getElementsByClassName("google-map"))
+        .panTo(latitude, longitude);
     } else {
       alert("Sorry, browser does not support geolocation!");
     }
@@ -38,11 +41,10 @@ const MapLocation = (props) => {
 
   return (
     <React.Fragment>
-      {/* <h5>checking maps</h5> */}
       <Box
         sx={{
           display: "flex",
-          width: "96%",
+          width: "90%",
           justifyContent: "end",
           height: "62px",
           alignItems: "center",
@@ -69,12 +71,11 @@ const MapLocation = (props) => {
       >
         <Marker position={{ lat: latitude, lng: longitude }} />
       </Map>
-      
       {console.log("props.google ->>", props.google)}
     </React.Fragment>
   );
 };
 
 export default GoogleApiWrapper({
-  apiKey: process.env.REACT_GOOGLE_LOCATION,
+  apiKey: process.env.REACT_APP_GOOGLE_LOCATION,
 })(MapLocation);
