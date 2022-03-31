@@ -30,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   heading: {
-    fontSize: "26px",
+    fontFamily: 'Rye  !important',
+    fontSize: "30px",
     color: "yellowgreen",
     paddingBottom: "16px",
   },
@@ -74,7 +75,7 @@ const LandingComponent = () => {
         <Box sx={{ paddingBottom: "60px" }}>
           <BioHazard />
         </Box>
-        <Typography className={classes.heading}>CRACK THE KEY !!</Typography>
+        <Typography className={classes.heading}>CRACK&nbsp;&nbsp;THE&nbsp;&nbsp;KEY !!</Typography>
         <Box className={classes.centered_div}>
           <Typography className={classes.typo1}>
             {truncateString(nkey)}
@@ -87,6 +88,7 @@ const LandingComponent = () => {
         <Box className={classes.centered_div}>
           <TextField
             sx={{ background: "whitesmoke" }}
+            autoComplete='off'
             value={crackedKey}
             onChange={(e) => setCrackedKey(e.target.value)}
           />
