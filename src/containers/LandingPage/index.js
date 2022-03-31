@@ -26,15 +26,22 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     justifyContent: "center",
     paddingBottom: "16px",
+    marginTop: "16px",
   },
 
   heading: {
     fontSize: "26px",
     color: "yellowgreen",
+    paddingBottom: "16px",
   },
 
   typo1: {
     color: "thistle",
+  },
+
+  hideCls: {
+    display: "none !important",
+    color: "white",
   },
 }));
 
@@ -60,7 +67,6 @@ const LandingComponent = () => {
       toast.error("Error !!", { pauseOnHover: false, autoClose: 2000 });
     }
   };
-  console.log("crackedKey ->", crackedKey);
 
   return (
     <React.Fragment>
@@ -74,6 +80,10 @@ const LandingComponent = () => {
             {truncateString(nkey)}
           </Typography>
         </Box>
+        <pre style={{ marginTop: "0px !important" }}>
+         Bravo !! u r in the game !! Find the actual key !!
+        </pre>
+        <p className={classes.hideCls}>{nkey}</p>
         <Box className={classes.centered_div}>
           <TextField
             sx={{ background: "whitesmoke" }}
