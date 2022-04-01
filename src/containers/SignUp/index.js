@@ -143,7 +143,7 @@ const SignUpComponent = () => {
                         {...field}
                         id="outlined-basic"
                         name="username"
-                        label="Username"
+                        label="Username*"
                         variant="outlined"
                         placeholder="Username"
                         error={errors.username ? true : false}
@@ -162,7 +162,7 @@ const SignUpComponent = () => {
                         {...field}
                         id="outlined-basic"
                         name="email"
-                        label="Email"
+                        label="Email*"
                         variant="outlined"
                         placeholder="Email"
                         error={errors.email ? true : false}
@@ -181,7 +181,7 @@ const SignUpComponent = () => {
                         {...field}
                         id="outlined-basic"
                         name="password"
-                        label="Password"
+                        label="Password*"
                         variant="outlined"
                         type="password"
                         placeholder="Password"
@@ -201,7 +201,7 @@ const SignUpComponent = () => {
                         {...field}
                         id="outlined-basic"
                         name="confirmpassword"
-                        label="Confirm Password"
+                        label="Confirm Password*"
                         variant="outlined"
                         type="password"
                         placeholder="Confirm Password"
@@ -220,6 +220,7 @@ const SignUpComponent = () => {
                         <PhoneInput
                           {...field}
                           enableSearch
+                          placeholder="Contact No*"
                           disableCountryGuess
                           disableCountryCode
                           country={"in"}

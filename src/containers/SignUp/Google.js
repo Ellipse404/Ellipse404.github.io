@@ -1,14 +1,13 @@
 import React from "react";
 import GoogleLogin from "react-google-login";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 const Google = () => {
-//   const [gvalues, setGvalues] = useState([
-//     {
-//       username: "",
-//       email: "",
-//     },
-//   ]);
+  const navigate = useNavigate();
+
   const responseGoogle = (response) => {
     console.log(
     "firstname :: ", response.profileObj.givenName,
@@ -28,10 +27,23 @@ const Google = () => {
           "GOOGLE SIGNIN SUCCESS response.tokenId -->>",
           response.tokenId
         );
+        toast.success("Success !!", { pauseOnHover: false, autoClose: 1000 });
+          window.setTimeout(function () {
+            navigate("/login");
+          }, 2000);
 
       })
       .catch((error) => {
         console.log("GOOGLE SIGNIN ERROR", error);
+        toast.error(error, {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
       });
   };
   return (
