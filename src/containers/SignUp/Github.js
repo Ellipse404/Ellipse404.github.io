@@ -1,9 +1,10 @@
 import React from "react";
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, Stack } from "@mui/material";
 import LoginGithub from "react-login-github";
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
-import { GithubLogo} from "../../components/Icons";
+import { GithubLogo } from "../../components/Icons";
+import { ToastContainer, toast } from "react-toastify";
 
 const useStyles = makeStyles((theme) => ({
   gitBtn: {
@@ -18,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
   gitText: {
     fontFamily: "Helvetica Neue",
     color: "whitesmoke",
+    paddingLeft: "12px !important",
   },
 }));
 
@@ -26,11 +28,25 @@ const GithubLoginComponent = () => {
   const navigate = useNavigate();
   const onSuccess = (response) => {
     console.log(response);
-    navigate("/login");
+    toast.success("Success !!", { pauseOnHover: false, autoClose: 1000 });
+    window.setTimeout(function () {
+      navigate("/login");
+    }, 2000);
   };
-  const onFailure = (response) => {
-    console.error(response);
-    navigate("/");
+  const onFailure = (err) => {
+    console.error(err);
+    toast.error(err, {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    });
+    window.setTimeout(function () {
+      navigate("/signup");
+    }, 2000);
   };
   return (
     <React.Fragment>
@@ -38,12 +54,12 @@ const GithubLoginComponent = () => {
         className={classes.gitBtn}
         clientId={process.env.REACT_APP_GITHUB_LOGIN_KEY}
         buttonText={
-          <div>
-            {/* <GithubLogo /> */}
+          <Stack direction="row" justifyContent="center">
+            <GithubLogo />
             <Typography className={classes.gitText}>
-              Login with Github
+              LOGIN WITH GITHUB
             </Typography>
-          </div>
+          </Stack>
         }
         onSuccess={onSuccess}
         onFailure={onFailure}
