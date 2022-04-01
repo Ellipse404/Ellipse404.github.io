@@ -1,6 +1,7 @@
 import React from 'react';
 import bioHazard2 from '../../assets/icons8-biohazard-100.png'
 import GoogleIcon from '../../assets/googleIcon.png'
+import GithubIcon from '../../assets/github.png'
 
 export function BioHazard({ className, title }) {
   return (
@@ -13,3 +14,10 @@ export function GoogleLogo({ className, title }) {
     <img src={GoogleIcon} alt="icon" />
   )
 }
+
+export function GithubLogo({ className, title }) {
+  return (
+    <img src={GithubIcon} alt="icon" />
+  )
+}
+
