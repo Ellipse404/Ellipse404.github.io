@@ -142,7 +142,7 @@ const SigninComponent = () => {
                     type="submit"
                     onClick={handleSubmit(onSubmit)}
                   >
-                    Submit
+                    Login
                   </Button>
                 </Box>
               </Box>

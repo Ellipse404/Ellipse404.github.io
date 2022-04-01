@@ -267,7 +267,7 @@ const SignUpComponent = () => {
                     type="submit"
                     onClick={handleSubmit(onSubmit)}
                   >
-                    Submit
+                    Register
                   </Button>
                 </Box>
               </Box>
