@@ -104,24 +104,19 @@ const SignUpComponent = () => {
       })
         .then((response) => {
           console.log("success", response);
-          toast.success("Success !", {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          toast.success("Success !!", { pauseOnHover: false, autoClose: 1000 });
+          window.setTimeout(function () {
+            navigate("/login");
+          }, 2000);
         })
         .catch((err) => {
           console.log("error", err);
-          toast.error("failed", {
+          toast.error(err, {
             position: "bottom-right",
-            autoClose: 5000,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
-            pauseOnHover: true,
+            pauseOnHover: false,
             draggable: true,
             progress: undefined,
           });
@@ -279,14 +274,7 @@ const SignUpComponent = () => {
             </FormControl>
             <ToastContainer
               position="bottom-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
+              theme="colored"
             />
           </form>
         </Box>
