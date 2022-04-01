@@ -22,6 +22,7 @@ import {
 import TextBoxInputField from "../../components/CustomTextField";
 import Google from "./Google";
 import { authenticate, isAuth } from "../../utils/helper";
+import GithubLoginComponent from "./Github";
 
 const useStyles = makeStyles((theme) => ({
   parentDiv: {
@@ -71,6 +72,16 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.66",
     letterSpacing: "0.03333em",
     marginLeft: "14px",
+  },
+
+  btnContainer: {
+    position: "absolute",
+    top: 40,
+    right: 40,
+    display: "flex",
+    flexDirection: "column",
+    height: "140px",
+    justifyContent: "space-between",
   },
 }));
 
@@ -273,16 +284,16 @@ const SignUpComponent = () => {
                 </Box>
               </Box>
             </FormControl>
-            <ToastContainer
-              position="bottom-right"
-              theme="colored"
-            />
+            <ToastContainer position="bottom-right" theme="colored" />
           </form>
         </Box>
       </Box>
-      <Box sx={{ position: "absolute", top: 40, right: 40 }}>
+      <Box className={classes.btnContainer}>
         <div className="glogin">
           <Google />
+        </div>
+        <div>
+          <GithubLoginComponent />
         </div>
       </Box>
     </React.Fragment>
