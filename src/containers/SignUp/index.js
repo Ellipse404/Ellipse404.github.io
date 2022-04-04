@@ -22,6 +22,7 @@ import {
 import TextBoxInputField from "../../components/CustomTextField";
 import Google from "./Google";
 import { authenticate, isAuth } from "../../utils/helper";
+import GithubLoginComponent from "./Github";
 
 const useStyles = makeStyles((theme) => ({
   parentDiv: {
@@ -72,6 +73,16 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "0.03333em",
     marginLeft: "14px",
   },
+
+  btnContainer: {
+    position: "absolute",
+    top: 40,
+    right: 40,
+    display: "flex",
+    flexDirection: "column",
+    height: "140px",
+    justifyContent: "space-between",
+  },
 }));
 
 const SignUpComponent = () => {
@@ -104,24 +115,19 @@ const SignUpComponent = () => {
       })
         .then((response) => {
           console.log("success", response);
-          toast.success("Success !", {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          toast.success("Success !!", { pauseOnHover: false, autoClose: 1000 });
+          window.setTimeout(function () {
+            navigate("/login");
+          }, 2000);
         })
         .catch((err) => {
           console.log("error", err);
-          toast.error("failed", {
+          toast.error(err, {
             position: "bottom-right",
-            autoClose: 5000,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
-            pauseOnHover: true,
+            pauseOnHover: false,
             draggable: true,
             progress: undefined,
           });
@@ -148,7 +154,7 @@ const SignUpComponent = () => {
                         {...field}
                         id="outlined-basic"
                         name="username"
-                        label="Username"
+                        label="Username*"
                         variant="outlined"
                         placeholder="Username"
                         error={errors.username ? true : false}
@@ -167,7 +173,7 @@ const SignUpComponent = () => {
                         {...field}
                         id="outlined-basic"
                         name="email"
-                        label="Email"
+                        label="Email*"
                         variant="outlined"
                         placeholder="Email"
                         error={errors.email ? true : false}
@@ -186,7 +192,7 @@ const SignUpComponent = () => {
                         {...field}
                         id="outlined-basic"
                         name="password"
-                        label="Password"
+                        label="Password*"
                         variant="outlined"
                         type="password"
                         placeholder="Password"
@@ -206,7 +212,7 @@ const SignUpComponent = () => {
                         {...field}
                         id="outlined-basic"
                         name="confirmpassword"
-                        label="Confirm Password"
+                        label="Confirm Password*"
                         variant="outlined"
                         type="password"
                         placeholder="Confirm Password"
@@ -225,6 +231,7 @@ const SignUpComponent = () => {
                         <PhoneInput
                           {...field}
                           enableSearch
+                          placeholder="Contact No*"
                           disableCountryGuess
                           disableCountryCode
                           country={"in"}
@@ -272,28 +279,21 @@ const SignUpComponent = () => {
                     type="submit"
                     onClick={handleSubmit(onSubmit)}
                   >
-                    Submit
+                    Register
                   </Button>
                 </Box>
               </Box>
             </FormControl>
-            <ToastContainer
-              position="bottom-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-            />
+            <ToastContainer position="bottom-right" theme="colored" />
           </form>
         </Box>
       </Box>
-      <Box sx={{ position: "absolute", top: 40, right: 40 }}>
+      <Box className={classes.btnContainer}>
         <div className="glogin">
           <Google />
+        </div>
+        <div>
+          <GithubLoginComponent />
         </div>
       </Box>
     </React.Fragment>

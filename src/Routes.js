@@ -15,13 +15,14 @@ const Loadable = (Component) => (props) =>
   const SignInComponent = Loadable(lazy(() => import('./containers/SignIn')))
   const SignUpComponent = Loadable(lazy(() => import('./containers/SignUp')))
   const MapLocation = Loadable(lazy(() => import('./components/GoogleMap')))
-
+  const ThirdSheetComponent = Loadable(lazy(() => import('./containers/ThirdSheet')))
   
 const Routes = [
   { path: "*", element: <LandingComponent /> },
   { path: "/signup", element: <SignUpComponent />},
   { path: "/login", element: <SignInComponent />},
   {path: "/location", element: <MapLocation />},
+  {path: "/iapps", element: <ThirdSheetComponent />},
 ];
 
 export default Routes;
