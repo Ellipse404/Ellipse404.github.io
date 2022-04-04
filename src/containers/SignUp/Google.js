@@ -28,6 +28,8 @@ const Google = () => {
   const navigate = useNavigate();
   const classes = useStyles();
   const responseGoogle = (response) => {
+    localStorage.setItem("username", response.profileObj.givenName)
+    localStorage.setItem("profileImage", response.profileObj.imageUrl)
     console.log(
       "firstname :: ",
       response.profileObj.givenName,
@@ -36,7 +38,9 @@ const Google = () => {
       "Email Id :: ",
       response.profileObj.email,
       "Google Id :: ",
-      response.profileObj.googleId
+      response.profileObj.googleId,
+      "Image Id :: ",
+      response.profileObj.imageUrl
     );
 
     axios({

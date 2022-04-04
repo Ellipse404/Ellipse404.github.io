@@ -115,6 +115,7 @@ const SignUpComponent = () => {
       })
         .then((response) => {
           console.log("success", response);
+          localStorage.setItem("username", response.data[0].username)
           toast.success("Success !!", { pauseOnHover: false, autoClose: 1000 });
           window.setTimeout(function () {
             navigate("/login");
@@ -159,9 +160,9 @@ const SignUpComponent = () => {
                         placeholder="Username"
                         error={errors.username ? true : false}
                         helperText={errors.username?.message}
-                      />
-                    )}
-                  />
+                        />
+                        )}
+                        />
                 </Box>
                 <Box>
                   <Controller

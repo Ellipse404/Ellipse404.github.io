@@ -12,6 +12,7 @@ import {
   passwordValidation,
   confirmPasswordValidation,
 } from "../../schema/validation_schema";
+import HeaderComponent from "../../components/StaticHeader";
 
 const useStyles = makeStyles((theme) => ({
   parentDiv: {
@@ -89,6 +90,7 @@ const SigninComponent = () => {
 
   return (
     <React.Fragment>
+      <HeaderComponent />
       <Box className={classes.parentDiv}>
         <Box className={classes.childDiv}>
           <form>
