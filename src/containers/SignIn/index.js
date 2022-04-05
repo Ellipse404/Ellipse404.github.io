@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
 import { TextField, Box, FormControl, Button } from "@mui/material";
@@ -13,6 +13,7 @@ import {
   confirmPasswordValidation,
 } from "../../schema/validation_schema";
 import HeaderComponent from "../../components/StaticHeader";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   parentDiv: {
@@ -67,6 +68,11 @@ const useStyles = makeStyles((theme) => ({
 
 const SigninComponent = () => {
   const classes = useStyles();
+  const [uName, setUname] = useState(null);
+  const [pwd, setPwd] = useState(null);
+  
+  const [datas, setData] = useState(null);
+  const [error, setError] = useState(null);
   const {
     control,
     handleSubmit,
@@ -74,19 +80,40 @@ const SigninComponent = () => {
   } = useForm({
     resolver: yupResolver(
       yup.object().shape({
-        email: emailValidation,
+        username: userNameValidation,
         password: passwordValidation,
       })
     ),
     mode: "all",
   });
+
+  // fetch data from API
+
+  useEffect(() => {
+    axios(process.env.REACT_APP_API_URL)
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log("error while fetchig data :: ", err);
+        setError(err);
+      });
+  }, []);
+
+  // console.log("experiment : ->")
+
+
   const onSubmit = async (data) => {
     try {
-      console.log("login data _>>>>", data);
+      setUname(data.username)
+      setPwd(data.password)
+      
     } catch (err) {
       console.log("error _>>>>", err);
     }
   };
+
+  console.log("login username _>>>>", uName, "login pwd _>>>>", pwd);
 
   return (
     <React.Fragment>
@@ -98,19 +125,19 @@ const SigninComponent = () => {
               <Box className={classes.stackClass}>
                 <Box>
                   <Controller
-                    name="email"
+                    name="username"
                     control={control}
                     render={({ field }) => (
                       <TextField
                         className={classes.txtBox}
                         {...field}
                         id="outlined-basic"
-                        name="email"
-                        label="Email*"
+                        name="username"
+                        label="Username*"
                         variant="outlined"
-                        placeholder="Email"
-                        error={errors.email ? true : false}
-                        helperText={errors.email?.message}
+                        placeholder="Username"
+                        error={errors.username ? true : false}
+                        helperText={errors.username?.message}
                       />
                     )}
                   />
