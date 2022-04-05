@@ -5,6 +5,7 @@ import { Grid, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import HeaderComponent from "../../components/StaticHeader";
 import ResponsiveAppBar from "../../components/StaticHeader";
+import ImageSearchComponent from "../../components/ImageSearch";
 
 const useStyles = makeStyles((theme) => ({
   sec1: {
@@ -22,6 +23,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     border: "1px dashed black",
   },
+
+  center: {
+    display: "flex",
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "start",
+  }
 }));
 
 const ThirdSheetComponent = () => {
@@ -42,7 +51,13 @@ const ThirdSheetComponent = () => {
             </Box>
           </Box>
         </Grid>
-        <Grid xs={6} lg={6} md={6} sm={6} xl={6}></Grid>
+        
+        <Grid xs={6} lg={6} md={6} sm={6} xl={6}>
+          <Box className={classes.center}>
+          <ImageSearchComponent />
+          </Box>
+            
+        </Grid>
       </Grid>
     </React.Fragment>
   );
