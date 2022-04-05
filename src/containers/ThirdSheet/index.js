@@ -4,7 +4,6 @@ import MyUploader from "../../components/ImageUploading";
 import { Grid, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import HeaderComponent from "../../components/StaticHeader";
-import ResponsiveAppBar from "../../components/StaticHeader";
 import ImageSearchComponent from "../../components/ImageSearch";
 
 const useStyles = makeStyles((theme) => ({
@@ -12,16 +11,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     width: "100% !important",
     justifyContent: "center !important",
-    height: "39vh",
+    height: "40vh",
     backgroundColor: "whitesmoke",
-    border: "1px dashed black",
+    borderBottom: "1px dashed black",
   },
 
   sec2: {
-    height: "58vh",
+    height: "60vh",
     overflowY: "auto",
     backgroundColor: "white",
-    border: "1px dashed black",
   },
 
   center: {
@@ -30,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     justifyContent: "center",
     alignItems: "start",
-  }
+  },
 }));
 
 const ThirdSheetComponent = () => {
@@ -39,9 +37,16 @@ const ThirdSheetComponent = () => {
     <React.Fragment>
       <HeaderComponent />
       <Grid container>
-        <Grid xs={6} lg={6} md={6} sm={6} xl={6}>
+        <Grid
+          xs={6}
+          lg={6}
+          md={6}
+          sm={6}
+          xl={6}
+          sx={{ border: "1px dashed black" }}
+        >
           <Box className={classes.sec1}>
-            <Box>
+            <Box sx={{ width: "100%", textAlign: "center" }}>
               <DatePickerComponent />
             </Box>
           </Box>
@@ -51,12 +56,10 @@ const ThirdSheetComponent = () => {
             </Box>
           </Box>
         </Grid>
-        
         <Grid xs={6} lg={6} md={6} sm={6} xl={6}>
           <Box className={classes.center}>
-          <ImageSearchComponent />
+            <ImageSearchComponent />
           </Box>
-            
         </Grid>
       </Grid>
     </React.Fragment>

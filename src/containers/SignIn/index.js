@@ -7,10 +7,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   userNameValidation,
-  emailValidation,
-  contactNoValidation,
   passwordValidation,
-  confirmPasswordValidation,
 } from "../../schema/validation_schema";
 import HeaderComponent from "../../components/StaticHeader";
 import axios from "axios";
@@ -70,7 +67,7 @@ const SigninComponent = () => {
   const classes = useStyles();
   const [uName, setUname] = useState(null);
   const [pwd, setPwd] = useState(null);
-  
+
   const [datas, setData] = useState(null);
   const [error, setError] = useState(null);
   const {
@@ -102,12 +99,10 @@ const SigninComponent = () => {
 
   // console.log("experiment : ->")
 
-
   const onSubmit = async (data) => {
     try {
-      setUname(data.username)
-      setPwd(data.password)
-      
+      setUname(data.username);
+      setPwd(data.password);
     } catch (err) {
       console.log("error _>>>>", err);
     }

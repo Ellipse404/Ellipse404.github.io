@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { TextField, Box, FormControl, Button } from "@mui/material";
+import ChildHeaderComponent from "../ChildHeader";
 
 const DatePickerComponent = () => {
   const [dateRange, setDateRange] = useState([null, null]);
@@ -9,6 +10,9 @@ const DatePickerComponent = () => {
 
   return (
     <React.Fragment>
+      <Box sx={{width: '100% !important'}}>
+      <ChildHeaderComponent header="React DatePicker" />
+      </Box>
       {/* <Box style={{ padding: "16px", background: "#216ba5", color: "#fff"}}> */}
       <DatePicker
         selectsRange={true}

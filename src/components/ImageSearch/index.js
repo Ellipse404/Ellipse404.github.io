@@ -1,6 +1,7 @@
 import { Box, Typography, TextField, Button, Stack } from "@mui/material";
 import React, { useRef, useState, useEffect } from "react";
 import { makeStyles } from "@mui/styles";
+import ChildHeaderComponent from "../ChildHeader";
 
 const useStyles = makeStyles((theme) => ({
   parent: {
@@ -61,9 +62,7 @@ const ImageSearchComponent = () => {
   return (
     <React.Fragment>
       <Box className={classes.parent}>
-        <Box className={classes.header}>
-          <Typography>Image Search</Typography>
-        </Box>
+        <ChildHeaderComponent header="Image Search"/>
         <Box>
           <form>
             <Stack direction="row" className={classes.stackClass}>
