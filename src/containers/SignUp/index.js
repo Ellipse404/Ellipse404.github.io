@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, FormControl } from "@mui/material";
+import { Box, Button, FormControl, Checkbox, Typography, Stack } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import PhoneInput from "react-phone-input-2";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +23,7 @@ import TextBoxInputField from "../../components/CustomTextField";
 import Google from "./Google";
 import { authenticate, isAuth } from "../../utils/helper";
 import GithubLoginComponent from "./Github";
+import FileDownloadComponent from "../../components/FileDownload";
 
 const useStyles = makeStyles((theme) => ({
   parentDiv: {
@@ -273,6 +274,14 @@ const SignUpComponent = () => {
                     )}
                   />
                 </Box>
+                <Stack direction="row" alignItems="center">
+                <Checkbox />
+                <Typography>
+                  Accept Terms & Conditions &nbsp;&nbsp;
+                </Typography>
+                <FileDownloadComponent />
+                </Stack>
+
                 <Box className={classes.centered_div}>
                   <Button
                     variant="contained"

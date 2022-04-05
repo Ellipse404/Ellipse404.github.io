@@ -62,7 +62,7 @@ const HeaderComponent = (props) => {
             <Typography className={classes.text}>
               {localStorage.getItem("username")}
             </Typography>
-            <LogoutIcon onClick={() => logoutHandler()}/>
+            <LogoutIcon  sx={{cursor: "pointer"}} onClick={() => logoutHandler()}/>
           </Box>
         </Box>
       </Box>
