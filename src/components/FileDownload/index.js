@@ -1,27 +1,44 @@
-import { Stack } from '@mui/material'
-import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
-import DropdownComponent from '../DropDown'
+import { Stack } from "@mui/material";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import DropdownComponent from "../DropDown";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 
 const FileDownloadComponent = () => {
-  const [data, setData] = useState('')
+  const [data, setData] = useState("");
   const childToParent = (childdata) => {
-    setData(childdata)
-  }
+    setData(childdata);
+  };
 
-  console.log("params : => ", data)
+  console.log("params : => ", data);
 
-  const fileFormat = data == 1 ? "Terms n Conditions.pdf" : data == 2 ? "Terms n Conditions.docx" : "Terms n Conditions.txt" 
+  const fileFormat =
+    data == 1
+      ? "Terms n Conditions.pdf"
+      : data == 2
+      ? "Terms n Conditions.docx"
+      : "Terms n Conditions.txt";
 
   return (
     <React.Fragment>
-      <Stack direction="row" alignItems="center" >
-        <Link to={fileFormat} target="_blank" download >Here </Link>
+      <Stack direction="row" alignItems="center">
+        <Link to={fileFormat} target="_blank" download>
+          <CloudDownloadIcon
+            variant="small"
+            sx={{ color: "grey !important" }}
+          />
+        </Link>
         <div>&nbsp;&nbsp;&nbsp;</div>
-        <DropdownComponent inputLab="Format" first=".pdf" second=".docx" third=".txt" childToParent={childToParent} />
+        <DropdownComponent
+          inputLab="Format"
+          first=".pdf"
+          second=".docx"
+          third=".txt"
+          childToParent={childToParent}
+        />
       </Stack>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default FileDownloadComponent
+export default FileDownloadComponent;
