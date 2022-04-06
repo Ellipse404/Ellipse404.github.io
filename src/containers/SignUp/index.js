@@ -1,5 +1,12 @@
-import React, { useState } from "react";
-import { Box, Button, FormControl, Checkbox, Typography, Stack } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import {
+  Box,
+  Button,
+  FormControl,
+  Checkbox,
+  Typography,
+  Stack,
+} from "@mui/material";
 import TextField from "@mui/material/TextField";
 import PhoneInput from "react-phone-input-2";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +31,7 @@ import Google from "./Google";
 import { authenticate, isAuth } from "../../utils/helper";
 import GithubLoginComponent from "./Github";
 import FileDownloadComponent from "../../components/FileDownload";
+import emailjs from "@emailjs/browser";
 
 const useStyles = makeStyles((theme) => ({
   parentDiv: {
@@ -89,6 +97,21 @@ const useStyles = makeStyles((theme) => ({
 const SignUpComponent = () => {
   const navigate = useNavigate();
   const classes = useStyles();
+
+  // Email service :
+  const sendEmail = (temp) => {
+    emailjs
+      .send("service_5hszzgj", "contact_form", temp, "1wPqehE9hNRKeqvBu")
+      .then(
+        (res) => {
+          console.log("Email js Res :", res.status, res.text);
+        },
+        (err) => {
+          console.log("Email js Err :", err);
+        }
+      );
+  };
+
   const {
     control,
     handleSubmit,
@@ -108,6 +131,14 @@ const SignUpComponent = () => {
   });
   const url_api = process.env.REACT_APP_API_URL;
   const onSubmit = async (data) => {
+    console.log("!async => ", data.email);
+    const templateParams = {
+      user_email: data.email,
+      to_name: data.username,
+      from_name: "ReactX",
+      message: "Testing !!",
+    };
+
     try {
       await axios({
         method: "POST",
@@ -116,7 +147,8 @@ const SignUpComponent = () => {
       })
         .then((response) => {
           console.log("success", response);
-          localStorage.setItem("username", response.data[0].username)
+          localStorage.setItem("username", response.data[0].username);
+          sendEmail(templateParams);
           toast.success("Success !!", { pauseOnHover: false, autoClose: 1000 });
           window.setTimeout(function () {
             navigate("/login");
@@ -161,9 +193,9 @@ const SignUpComponent = () => {
                         placeholder="Username"
                         error={errors.username ? true : false}
                         helperText={errors.username?.message}
-                        />
-                        )}
-                        />
+                      />
+                    )}
+                  />
                 </Box>
                 <Box>
                   <Controller
@@ -275,11 +307,11 @@ const SignUpComponent = () => {
                   />
                 </Box>
                 <Stack direction="row" alignItems="center">
-                <Checkbox />
-                <Typography>
-                  Accept Terms & Conditions &nbsp;&nbsp;
-                </Typography>
-                <FileDownloadComponent />
+                  <Checkbox />
+                  <Typography>
+                    Accept Terms & Conditions &nbsp;&nbsp;
+                  </Typography>
+                  <FileDownloadComponent />
                 </Stack>
 
                 <Box className={classes.centered_div}>

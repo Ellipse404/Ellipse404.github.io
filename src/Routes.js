@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import App from "./App";
+// import { ContactUs } from "./components/EmailServices";
 import LoadingScreen from "./components/LoadingScreen";
 // import GoogleApiWrapper from "./components/GoogleMap"
 
@@ -16,6 +17,7 @@ const Loadable = (Component) => (props) =>
   const SignUpComponent = Loadable(lazy(() => import('./containers/SignUp')))
   const MapLocation = Loadable(lazy(() => import('./components/GoogleMap')))
   const ThirdSheetComponent = Loadable(lazy(() => import('./containers/ThirdSheet')))
+  const EmailServic = Loadable(lazy(() => import('./components/EmailServices')))
   
 const Routes = [
   { path: "*", element: <LandingComponent /> },
@@ -23,6 +25,7 @@ const Routes = [
   { path: "/login", element: <SignInComponent />},
   {path: "/location", element: <MapLocation />},
   {path: "/iapps", element: <ThirdSheetComponent />},
+  {path: "/em", element: <EmailServic />}
 ];
 
 export default Routes;
