@@ -4,6 +4,7 @@ import { Grid, Box, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import LogoutIcon from '@mui/icons-material/Logout';
+import ModalComponent from "../Modal";
 
 const useStyles = makeStyles((theme) => ({
   parent: {
@@ -50,6 +51,7 @@ const HeaderComponent = (props) => {
             paddingRight: "12px",
           }}
         >
+
           <Box className={classes.child2}>
             <Box>
               {(
@@ -62,7 +64,9 @@ const HeaderComponent = (props) => {
             <Typography className={classes.text}>
               {localStorage.getItem("username")}
             </Typography>
-            <LogoutIcon  sx={{cursor: "pointer"}} onClick={() => logoutHandler()}/>
+            <ModalComponent onClick={(e) => logoutHandler(e)} />
+
+            {/* <LogoutIcon  sx={{cursor: "pointer"}} onClick={() => logoutHandler()}/> */}
           </Box>
         </Box>
       </Box>
