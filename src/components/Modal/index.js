@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import { Button, Stack, Typography, Modal } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { DummyProfile } from "../Icons"
+import { DummyProfile } from "../Icons";
 
 const style = {
   position: "absolute",
@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   profileBox: {
-    width:"100%",
-  }
+    width: "100%",
+  },
 }));
 
 export default function ModalComponent({ onClick, ...props }) {
@@ -39,19 +39,15 @@ export default function ModalComponent({ onClick, ...props }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const profileImage = localStorage.getItem("profileImage");
- const pc = (
-  <img
-    style={{ height: "50px ", borderRadius: "6px" }}
-    src={profileImage}
-  />
-)
+  const pc = (
+    <img style={{ height: "50px ", borderRadius: "6px" }} src={profileImage} />
+  );
   return (
     <div>
       <LogoutIcon
         sx={{ cursor: "pointer", color: "whitesmoke" }}
         onClick={handleOpen}
       />
-
       <Modal
         open={open}
         onClose={handleClose}
@@ -59,17 +55,15 @@ export default function ModalComponent({ onClick, ...props }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Box >
+          <Box>
             <Box className={classes.profileBox}>
-             { profileImage ? pc : <DummyProfile />}
+              {profileImage ? pc : <DummyProfile />}
             </Box>
           </Box>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-           Hey,{localStorage.getItem("username")}  
+            Hey,{localStorage.getItem("username")}
           </Typography>
-          <Typography>
-          Are you sure to Logout ?
-          </Typography>
+          <Typography>Are you sure to Logout ?</Typography>
           <Stack
             direction="row"
             justifyContent="space-between"
