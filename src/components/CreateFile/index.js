@@ -21,7 +21,6 @@ const CreateFileComponent = () => {
   const classes = useStyles();
 
   // fetch data from API & state store
-
   useEffect(() => {
     axios(process.env.REACT_APP_API_URL)
       .then((res) => {
@@ -32,7 +31,7 @@ const CreateFileComponent = () => {
       });
   }, []);
 
-  // create file
+  // create downloadable file
   const downloadTxtFile = () => {
     const createFile = document.createElement("a");
     const file = new Blob([JSON.stringify(data)], { type: "text/plain" });

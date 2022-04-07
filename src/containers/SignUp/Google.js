@@ -6,30 +6,29 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import {GoogleLogo} from "../../components/Icons/index"
+import { GoogleLogo } from "../../components/Icons/index";
 
 const useStyles = makeStyles((theme) => ({
   customBtn: {
     width: "300px !important",
     height: "60px !important",
     background: "#E74C3C !important",
-    borderRadius: "6px !important"
+    borderRadius: "6px !important",
   },
 
   customText: {
     fontFamily: "Helvetica Neue",
     color: "whitesmoke",
-    paddingLeft:"8px"
-
-  }
+    paddingLeft: "8px",
+  },
 }));
 
 const Google = () => {
   const navigate = useNavigate();
   const classes = useStyles();
   const responseGoogle = (response) => {
-    localStorage.setItem("username", response.profileObj.givenName)
-    localStorage.setItem("profileImage", response.profileObj.imageUrl)
+    localStorage.setItem("username", response.profileObj.givenName);
+    localStorage.setItem("profileImage", response.profileObj.imageUrl);
     console.log(
       "firstname :: ",
       response.profileObj.givenName,
@@ -82,7 +81,9 @@ const Google = () => {
             disabled={renderProps.disabled}
           >
             <GoogleLogo />
-            <Typography className={classes.customText}>Login with Google</Typography>
+            <Typography className={classes.customText}>
+              Login with Google
+            </Typography>
           </Button>
         )}
         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}

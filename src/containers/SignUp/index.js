@@ -32,6 +32,7 @@ import { authenticate, isAuth } from "../../utils/helper";
 import GithubLoginComponent from "./Github";
 import FileDownloadComponent from "../../components/FileDownload";
 import emailjs from "@emailjs/browser";
+import Info from '../../constants/error'
 
 const useStyles = makeStyles((theme) => ({
   parentDiv: {
@@ -101,7 +102,7 @@ const SignUpComponent = () => {
   // Email service :
   const sendEmail = (temp) => {
     emailjs
-      .send("service_5hszzgj", "contact_form", temp, "1wPqehE9hNRKeqvBu")
+      .send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, temp, process.env.REACT_APP_EMAILJS_USER_ID)
       .then(
         (res) => {
           console.log("Email js Res :", res.status, res.text);
@@ -136,7 +137,7 @@ const SignUpComponent = () => {
       user_email: data.email,
       to_name: data.username,
       from_name: "ReactX",
-      message: "Testing !!",
+      message: Info.accountCreation,
     };
 
     try {

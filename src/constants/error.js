@@ -32,6 +32,7 @@ const errors = {
   permissionRequired: "Atleast one permission needs to be selected",
   subCustomisation: "There should be atleast 2 Customisation items",
   listItem: "There must be atleast 2 List items",
+  accountCreation: "Great to see you here !! "
 };
 
 export default errors;
