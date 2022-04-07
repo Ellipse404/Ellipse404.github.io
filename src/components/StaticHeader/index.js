@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Grid, Box, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
+import ModalComponent from "../Modal";
 
 const useStyles = makeStyles((theme) => ({
   parent: {
@@ -36,9 +37,12 @@ const HeaderComponent = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const logoutHandler = (e) => {
-    navigate("/signup")
-    localStorage.clear()
-  }
+    navigate("/signup");
+    localStorage.clear();
+  };
+
+  const profileImage = localStorage.getItem("profileImage");
+
   return (
     <React.Fragment>
       <Box className={classes.parent}>
@@ -55,14 +59,16 @@ const HeaderComponent = (props) => {
               {(
                 <img
                   style={{ height: "38px ", borderRadius: "6px" }}
-                  src={localStorage.getItem("profileImage")}
+                  src={profileImage}
                 />
               ) || <AccountCircle />}
             </Box>
             <Typography className={classes.text}>
               {localStorage.getItem("username")}
             </Typography>
-            <LogoutIcon  sx={{cursor: "pointer"}} onClick={() => logoutHandler()}/>
+            <ModalComponent
+              onClick={(e) => logoutHandler(e)}
+            />
           </Box>
         </Box>
       </Box>

@@ -173,7 +173,6 @@ const SigninComponent = () => {
             </FormControl>
           </form>
         </Box>
-        <a href="Terms n Conditions.pdf" target="_blank" download>Download</a>
       </Box>
     </React.Fragment>
   );

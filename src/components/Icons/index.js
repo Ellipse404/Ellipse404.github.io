@@ -2,6 +2,7 @@ import React from "react";
 import bioHazard2 from "../../assets/icons8-biohazard-100.png";
 import GoogleIcon from "../../assets/googleIcon.png";
 import GithubIcon from "../../assets/Github2.png";
+import DummyIcon from "../../assets/dummyprofile.png"
 
 export function BioHazard({ className, title }) {
   return <img src={bioHazard2} alt="icon" />;
@@ -13,4 +14,8 @@ export function GoogleLogo({ className, title }) {
 
 export function GithubLogo({ className, title }) {
   return <img src={GithubIcon} alt="icon" />;
+}
+
+export function DummyProfile({ className, title }) {
+  return <img src={DummyIcon} alt="icon" />;
 }
