@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
     width: "auto",
     height: "36px",
     backgroundColor: "#009999 !important",
+    textTransform: 'none'
   },
 
   typo1: {
