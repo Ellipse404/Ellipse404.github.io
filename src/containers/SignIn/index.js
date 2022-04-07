@@ -11,6 +11,7 @@ import {
 } from "../../schema/validation_schema";
 import HeaderComponent from "../../components/StaticHeader";
 import axios from "axios";
+import CreateFileComponent from "../../components/CreateFile";
 
 const useStyles = makeStyles((theme) => ({
   parentDiv: {
@@ -158,6 +159,7 @@ const SigninComponent = () => {
                     )}
                   />
                 </Box>
+                <CreateFileComponent />
 
                 <Box className={classes.centered_div}>
                   <Button
