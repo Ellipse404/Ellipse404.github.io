@@ -1,6 +1,7 @@
-const PlusReducer = (value) => {
+const PlusReducer = (state, value) => {
   return {
     value: value +1
+    // countNumbers: countNumbers+1
   }
 } 
 
