@@ -64,7 +64,7 @@ const GithubLoginComponent = () => {
           <Stack direction="row" justifyContent="center">
             <GithubLogo />
             <Typography className={classes.gitText}>
-              LOGIN WITH GITHUB.
+              LOGIN WITH GITHUB
             </Typography>
           </Stack>
         }
