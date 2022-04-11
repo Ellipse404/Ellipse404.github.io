@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Typography, Stack } from "@mui/material";
 import LoginGithub from "react-login-github";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +25,13 @@ const useStyles = makeStyles((theme) => ({
 
 const GithubLoginComponent = () => {
   const classes = useStyles();
+  const [isLocal, setIsLocal] = useState(false);
   const navigate = useNavigate();
+  function verifyUrl() {
+    return window.location.href.indexOf("localhost") !== -1
+      ? setIsLocal(true)
+      : setIsLocal(false);
+  }
   const onSuccess = (response) => {
     console.log(response);
     toast.success("Success !!", { pauseOnHover: false, autoClose: 1000 });
@@ -48,11 +54,17 @@ const GithubLoginComponent = () => {
       navigate("/signup");
     }, 2000);
   };
+  console.log(window.location.href);
+  console.log("URL TYPE => ", isLocal ? "localUrl" : "productionUrl");
   return (
     <React.Fragment>
       <LoginGithub
         className={classes.gitBtn}
-        clientId={process.env.REACT_APP_GITHUB_LOGIN_KEY}
+        clientId={
+          window.location.href.indexOf("localhost") !== -1
+            ? process.env.REACT_APP_GITHUB_LOCAL_LOGIN_KEY
+            : process.env.REACT_APP_GITHUB_PRODUCTION_LOGIN_KEY
+        }
         buttonText={
           <Stack direction="row" justifyContent="center">
             <GithubLogo />
