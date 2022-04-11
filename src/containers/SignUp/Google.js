@@ -27,8 +27,8 @@ const Google = () => {
   const navigate = useNavigate();
   const classes = useStyles();
   const responseGoogle = (response) => {
-    localStorage.setItem("username", response.profileObj.given_name);
-    localStorage.setItem("profileImage", response.profileObj.imageUrl);
+    localStorage.setItem("username", response.profile.given_name);
+    localStorage.setItem("profileImage", response.profile.imageUrl);
     console.log(
       "firstname :: ",
       response.profileObj.givenName,
