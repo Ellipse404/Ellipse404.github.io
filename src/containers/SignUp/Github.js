@@ -25,13 +25,8 @@ const useStyles = makeStyles((theme) => ({
 
 const GithubLoginComponent = () => {
   const classes = useStyles();
-  const [isLocal, setIsLocal] = useState(false);
   const navigate = useNavigate();
-  function verifyUrl() {
-    return window.location.href.indexOf("localhost") !== -1
-      ? setIsLocal(true)
-      : setIsLocal(false);
-  }
+  const localUrl = window.location.href.indexOf("localhost") !== -1 ? true : false;
   const onSuccess = (response) => {
     console.log(response);
     toast.success("Success !!", { pauseOnHover: false, autoClose: 1000 });
@@ -55,13 +50,13 @@ const GithubLoginComponent = () => {
     }, 2000);
   };
   console.log(window.location.href);
-  console.log("URL TYPE => ", isLocal ? "localUrl" : "productionUrl");
+  console.log("URL TYPE => ", localUrl ? "localUrl" : "productionUrl");
   return (
     <React.Fragment>
       <LoginGithub
         className={classes.gitBtn}
         clientId={
-          window.location.href.indexOf("localhost") !== -1
+          localUrl
             ? process.env.REACT_APP_GITHUB_LOCAL_LOGIN_KEY
             : process.env.REACT_APP_GITHUB_PRODUCTION_LOGIN_KEY
         }
