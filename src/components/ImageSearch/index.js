@@ -62,7 +62,7 @@ const ImageSearchComponent = () => {
   return (
     <React.Fragment>
       <Box className={classes.parent}>
-        <ChildHeaderComponent header="Image Search"/>
+        <ChildHeaderComponent header="Image Search" />
         <Box>
           <form>
             <Stack direction="row" className={classes.stackClass}>
