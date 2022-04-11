@@ -1,30 +1,13 @@
-import { PLUS_ACTION, MINUS_ACTION } from "../action/actionType";
-import PlusReducer from "./plusReducer";
-import MinusReducer from "./minusReducer";
+import { combineReducers } from 'redux'
+import basic from './basic';
 
-const initialState = {
-  countNumbers: 20,
-};
+const appReducers = combineReducers({
+  basic,
+})
+console.log("check reducer => ",basic.countNumbers)
 
-const CombinedReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case PLUS_ACTION:
-      //  { PlusReducer(...state, state.countNumbers); }
-      return {
-        ...state,
-        countNumbers: state.countNumbers + 1
-      }
-
-    case MINUS_ACTION: 
-    // { MinusReducer(state); }
-    return {
-      ...state,
-      countNumbers: state.countNumbers - 1
-    }
-
-    default:
-      return state;
+const rootReducer = (state, action) => {
+  return appReducers(state, action)
   }
-};
 
-export default CombinedReducer;
+  export default rootReducer
