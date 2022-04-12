@@ -66,7 +66,8 @@ const ImageSearchComponent = () => {
         <Box>
           <form>
             <Stack direction="row" className={classes.stackClass}>
-              <TextField sx={{ width: "80%" }} inputRef={valueRef} />
+              {/* useRef hook */}
+              <TextField sx={{ width: "80%" }} inputRef={valueRef} /> 
               <Button
                 className={classes.btnClass}
                 onClick={() => handleSubmit()}
