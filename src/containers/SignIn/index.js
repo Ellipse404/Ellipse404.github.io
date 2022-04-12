@@ -12,6 +12,7 @@ import {
 import HeaderComponent from "../../components/StaticHeader";
 import axios from "axios";
 import CreateFileComponent from "../../components/CreateFile";
+import ParentComponent from "../../components/ContextAPI/parent";
 
 const useStyles = makeStyles((theme) => ({
   parentDiv: {
@@ -98,7 +99,7 @@ const SigninComponent = () => {
       });
   }, []);
 
-  console.log("experiment : ->", datas)
+  console.log("experiment : ->", datas);
 
   const onSubmit = async (data) => {
     try {
@@ -176,6 +177,7 @@ const SigninComponent = () => {
           </form>
         </Box>
       </Box>
+      <ParentComponent />
     </React.Fragment>
   );
 };
