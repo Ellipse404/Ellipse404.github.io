@@ -4,6 +4,7 @@ import { Button, Stack, Typography, Modal } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { DummyProfile } from "../Icons";
+import { MyButton } from "../StyledComponents/button";
 
 const style = {
   position: "absolute",
@@ -69,12 +70,12 @@ export default function ModalComponent({ onClick, ...props }) {
             justifyContent="space-between"
             sx={{ marginTop: "20px" }}
           >
-            <Button onClick={handleClose} color="error" variant="contained">
+            <MyButton danger onClick={handleClose} >
               No
-            </Button>
-            <Button color="success" variant="contained" onClick={onClick}>
+            </MyButton>
+            <MyButton success onClick={onClick}>
               Yes
-            </Button>
+            </MyButton>
           </Stack>
         </Box>
       </Modal>

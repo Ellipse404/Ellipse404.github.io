@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import {MyButton} from "../StyledComponents/button"
 
 const useStyles = makeStyles((theme) => ({
   downloadBtn: {
@@ -50,7 +51,7 @@ const CreateFileComponent = () => {
           <Typography className={classes.typo1}>
             <pre>Download Data</pre>
           </Typography>
-        </Button>
+        </Button>        
       </Box>
     </React.Fragment>
   );
