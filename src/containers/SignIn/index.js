@@ -12,6 +12,8 @@ import {
 import HeaderComponent from "../../components/StaticHeader";
 import axios from "axios";
 import CreateFileComponent from "../../components/CreateFile";
+import ParentComponent from "../../components/ContextAPI/parent";
+import { MyButton } from "../../components/StyledComponents/button";
 
 const useStyles = makeStyles((theme) => ({
   parentDiv: {
@@ -98,7 +100,7 @@ const SigninComponent = () => {
       });
   }, []);
 
-  console.log("experiment : ->", datas)
+  console.log("experiment : ->", datas);
 
   const onSubmit = async (data) => {
     try {
@@ -162,20 +164,20 @@ const SigninComponent = () => {
                 <CreateFileComponent />
 
                 <Box className={classes.centered_div}>
-                  <Button
-                    variant="contained"
-                    color="success"
+                  <MyButton
+                    success
                     type="submit"
                     onClick={handleSubmit(onSubmit)}
                   >
                     Login
-                  </Button>
+                  </MyButton>
                 </Box>
               </Box>
             </FormControl>
           </form>
         </Box>
       </Box>
+      <ParentComponent />
     </React.Fragment>
   );
 };
