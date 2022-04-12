@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import App from "./App";
+import EditorComponent from "./components/CkEditor";
 import LoadingScreen from "./components/LoadingScreen";
 // import GoogleApiWrapper from "./components/GoogleMap"
 
@@ -27,6 +28,7 @@ const Routes = [
   { path: "/login", element: <SignInComponent /> },
   { path: "/location", element: <MapLocation /> },
   { path: "/iapps", element: <ThirdSheetComponent /> },
+  { path: "/editor", element: <EditorComponent /> }
 ];
 
 export default Routes;
