@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "homepage": "https://github.com/Ellipse404/Ellipse404.github.io/tree/deployment",
+  "homepage": "https://github.com/Ellipse404/Ellipse404.github.io",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
