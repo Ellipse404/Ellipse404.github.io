@@ -16,10 +16,12 @@ const ExtraComponent = () => {
       />
       <Box
         sx={{
-          width: "100%",
+          width: "90%",
           display: "flex",
-          height: "70px",
-          justifyContent: "center",
+          height: "76px",
+          justifyContent: "space-between",
+          paddingLeft: "22px",
+          paddingRight: "22px",
           alignItems: "center",
         }}
       >
