@@ -1,7 +1,8 @@
 import React, { lazy, Suspense } from "react";
 import App from "./App";
-import EditorComponent from "./components/CkEditor";
+import ExtraComponent from "./components/CkEditor";
 import LoadingScreen from "./components/LoadingScreen";
+import TreeViewComponent from "./components/TreeMap";
 // import GoogleApiWrapper from "./components/GoogleMap"
 
 const Loadable = (Component) => (props) =>
@@ -28,7 +29,7 @@ const Routes = [
   { path: "/login", element: <SignInComponent /> },
   { path: "/location", element: <MapLocation /> },
   { path: "/iapps", element: <ThirdSheetComponent /> },
-  { path: "/editor", element: <EditorComponent /> }
+  { path: "/editor", element: <ExtraComponent /> },
 ];
 
 export default Routes;
