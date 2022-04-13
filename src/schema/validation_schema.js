@@ -16,11 +16,12 @@ export const contactNoValidation = yup
   )
   .required(errors.required);
 
-export const passwordValidation = yup.string().required(errors.required);
-// .matches(
-//   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-//   errors.password
-// );
+export const passwordValidation = yup.string()
+.required(errors.required)
+.matches(
+  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+  errors.password
+);
 
 export const confirmPasswordValidation = yup
   .string()
