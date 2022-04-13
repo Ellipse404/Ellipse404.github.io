@@ -3,12 +3,21 @@ import React from "react";
 import { useSpeechSynthesis } from "react-speech-kit";
 
 const TextToSpeechComponent = (props) => {
-  const { speak } = useSpeechSynthesis();
+  const onEnd = () => {
+    // You could do something here after speaking has finished
+  };
+  const { speak, cancel, speaking, supported, voices } = useSpeechSynthesis({
+    onEnd,
+  });
   return (
     <React.Fragment>
-      <Button color="primary" variant="contained" onClick={() => speak({text:  props.word || "Hello !!" })}>
+      { !supported && (
+        <pre>Your browser does not support speech recognition !!</pre>
+      )}
+
+     { supported &&(<Button color="primary" variant="contained" onClick={() => speak({text:  props.word || "Hello !!" })}>
         {props.btnText || "SPEAK"}
-      </Button>
+      </Button>)}
     </React.Fragment>
   );
 };
