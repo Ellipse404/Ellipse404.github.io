@@ -12,19 +12,19 @@ const SpeechToTextComponent = () => {
 
   return (
     <React.Fragment>
-    <Box>
-      <textarea
-        value={value}
-        onChange={(event) => setValue(event.target.value)}
-      />
-      <Button color="primary" variant="contained" onMouseDown={listen}>
-        START
-      </Button>
-      <Button color="primary" variant="contained" onMouseUp={stop}>
-        STOP
-      </Button>
-      {listening && <div>Go ahead I'm listening</div>}
-    </Box>
+      <Box>
+        <textarea
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+        />
+        <Button color="primary" variant="contained" onMouseDown={listen}>
+          START
+        </Button>
+        <Button color="primary" variant="contained" onMouseUp={stop}>
+          STOP
+        </Button>
+        {listening && <div>Go ahead I'm listening</div>}
+      </Box>
     </React.Fragment>
   );
 };

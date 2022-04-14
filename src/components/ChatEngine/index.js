@@ -36,16 +36,16 @@ const ChatEngineComponent = () => {
 
   return (
     <React.Fragment>
-      <Box sx={{ width:'inherit', border:"2px grey black"}}>
-      <ChatEngine
-        height="100vh"
-        userName="Ellipse46"
-        projectID={process.env.REACT_APP_CHAT_ENGINE_PROJECT_ID}
-        userSecret={process.env.REACT_APP_CHAT_ENGINE_SECRET}
-        displayNewChatInterface={(credentials) =>
-          displayChatInterface(credentials)
-        }
-      />
+      <Box sx={{ width: "inherit", border: "2px grey black" }}>
+        <ChatEngine
+          height="100vh"
+          userName="Ellipse46"
+          projectID={process.env.REACT_APP_CHAT_ENGINE_PROJECT_ID}
+          userSecret={process.env.REACT_APP_CHAT_ENGINE_SECRET}
+          displayNewChatInterface={(credentials) =>
+            displayChatInterface(credentials)
+          }
+        />
       </Box>
     </React.Fragment>
   );
