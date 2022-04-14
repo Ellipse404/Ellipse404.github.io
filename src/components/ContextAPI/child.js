@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import AuthContext from "./context";
 
 const ChildComponent = () => {
-  const data = useContext(AuthContext);
+  const {authData, dataFlow, setDataFlow } = useContext(AuthContext);
   return (
     <React.Fragment>
-      {console.log("data from context api for child 1 => ", data)}
+      {/* child has access to parent data  -> */}
+      { console.log("from parent to child using context API : => ",authData) }
     </React.Fragment>
   );
 };
