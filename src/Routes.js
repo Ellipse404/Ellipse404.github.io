@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import App from "./App";
+import ChatEngineComponent from "./components/ChatEngine";
 import ExtraComponent from "./components/CkEditor";
 import LoadingScreen from "./components/LoadingScreen";
 import TreeViewComponent from "./components/TreeMap";
@@ -30,6 +31,7 @@ const Routes = [
   { path: "/location", element: <MapLocation /> },
   { path: "/iapps", element: <ThirdSheetComponent /> },
   { path: "/editor", element: <ExtraComponent /> },
+  { path: "/chat", element: <ChatEngineComponent /> }
 ];
 
 export default Routes;
