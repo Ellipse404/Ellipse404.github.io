@@ -11,6 +11,7 @@ const SpeechToTextComponent = () => {
   });
 
   return (
+    <React.Fragment>
     <Box>
       <textarea
         value={value}
@@ -24,6 +25,7 @@ const SpeechToTextComponent = () => {
       </Button>
       {listening && <div>Go ahead I'm listening</div>}
     </Box>
+    </React.Fragment>
   );
 };
 
